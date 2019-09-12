@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "publish": "npm run build",
-    "build": "babel ./src -o dist"
+    "build": "rm -rf dist && NODE_ENV=production babel src/index.js -d dist"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/lunr-digital/useForm#readme",
   "devDependencies": {
+    "@babel/cli": "^7.6.0",
     "@lunrdigital/eslint-config": "1.0.1",
     "@testing-library/react": "^9.1.4",
     "@testing-library/react-hooks": "^2.0.1",
@@ -54,6 +55,7 @@
     ]
   },
   "dependencies": {
+    "@babel/runtime": "^7.6.0",
     "@testing-library/jest-dom": "^4.1.0"
   }
 }
