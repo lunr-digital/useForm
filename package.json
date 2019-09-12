@@ -1,0 +1,59 @@
+{
+  "name": "@lunrdigital/use-form",
+  "version": "1.0.0",
+  "description": "React hook for simple form management",
+  "main": "dist",
+  "scripts": {
+    "test": "jest",
+    "publish": "npm run build",
+    "build": "babel ./src -o dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lunr-digital/useForm.git"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "form"
+  ],
+  "author": "Lunr Digital",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lunr-digital/useForm/issues"
+  },
+  "homepage": "https://github.com/lunr-digital/useForm#readme",
+  "devDependencies": {
+    "@lunrdigital/eslint-config": "1.0.1",
+    "@testing-library/react": "^9.1.4",
+    "@testing-library/react-hooks": "^2.0.1",
+    "babel-eslint": "10.x",
+    "babel-preset-react-app": "^9.0.1",
+    "eslint": "6.x",
+    "eslint-config-airbnb": "18.x",
+    "eslint-config-prettier": "3.x",
+    "eslint-plugin-import": "2.x",
+    "eslint-plugin-jest": "22.x",
+    "eslint-plugin-jsx-a11y": "6.x",
+    "eslint-plugin-prettier": "3.x",
+    "eslint-plugin-react": "7.x",
+    "eslint-plugin-react-hooks": "1.x",
+    "jest": "^24.9.0",
+    "prettier": "1.x",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-test-renderer": "^16.9.0"
+  },
+  "peerDependencies": {
+    "react": "16.x",
+    "react-dom": "16.x"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/setup-tests.js"
+    ]
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.1.0"
+  }
+}
