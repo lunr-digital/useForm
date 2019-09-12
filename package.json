@@ -17,6 +17,7 @@
     "hooks",
     "form"
   ],
+  "files": ["dist"],
   "author": "Lunr Digital",
   "license": "ISC",
   "bugs": {
