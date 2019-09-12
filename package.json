@@ -1,6 +1,6 @@
 {
   "name": "@lunrdigital/use-form",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React hook for simple form management",
   "main": "dist",
   "scripts": {
@@ -17,7 +17,9 @@
     "hooks",
     "form"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "author": "Lunr Digital",
   "license": "ISC",
   "bugs": {
