@@ -5,7 +5,7 @@
   "main": "dist",
   "scripts": {
     "test": "jest",
-    "publish": "npm run build",
+    "prepublish": "npm run build",
     "build": "rm -rf dist && NODE_ENV=production babel src/index.js -d dist"
   },
   "repository": {

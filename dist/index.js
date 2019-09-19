@@ -8,6 +8,24 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 import { useState } from 'react';
+export var getValue = function getValue(event) {
+  var _event$target = event.target,
+      value = _event$target.value,
+      checked = _event$target.checked,
+      files = _event$target.files,
+      multiple = _event$target.multiple,
+      type = _event$target.type;
+
+  if (type === 'file') {
+    return multiple ? files : files[0];
+  }
+
+  if (type === 'checkbox') {
+    return checked;
+  }
+
+  return value;
+};
 
 var useForm = function useForm(initialValues, onSubmit) {
   var _useState = useState(initialValues),
@@ -74,13 +92,10 @@ var useForm = function useForm(initialValues, onSubmit) {
   }();
 
   var handleChange = function handleChange(event) {
-    var _event$target = event.target,
-        name = _event$target.name,
-        value = _event$target.value,
-        checked = _event$target.checked,
-        type = _event$target.type;
+    var name = event.target.name;
+    var value = getValue(event);
     setValues(function (currentValues) {
-      return _objectSpread({}, currentValues, _defineProperty({}, name, type === 'checkbox' ? checked : value));
+      return _objectSpread({}, currentValues, _defineProperty({}, name, value));
     });
   };
 
