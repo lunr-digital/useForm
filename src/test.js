@@ -3,10 +3,12 @@ import { renderHook, act } from '@testing-library/react-hooks';
 import useForm from '.';
 
 it.each`
-    type          | event                                                    | expected
-    ${'input'}    | ${{ name: 'input', value: 'New text' }}                  | ${'New text'}
-    ${'radio'}    | ${{ name: 'radio', value: 'b' }}                         | ${'b'}
-    ${'checkbox'} | ${{ name: 'checkbox', checked: true, type: 'checkbox' }} | ${true}
+    type          | event                                                                          | expected
+    ${'input'}    | ${{ name: 'input', value: 'New text' }}                                        | ${'New text'}
+    ${'radio'}    | ${{ name: 'radio', value: 'b' }}                                               | ${'b'}
+    ${'checkbox'} | ${{ name: 'checkbox', checked: true, type: 'checkbox' }}                       | ${true}
+    ${'file'}     | ${{ name: 'file', files: ['file 1'], type: 'file' }}                           | ${'file 1'}
+    ${'file'}     | ${{ name: 'file', files: ['file 1', 'file 2'], type: 'file', multiple: true }} | ${['file 1', 'file 2']}
 `(`change handle $type change events`, ({ event, expected }) => {
     const initialValues = {
         [event.name]: ''
@@ -31,14 +33,20 @@ it('should handle submit', async () => {
     const preventDefault = jest.fn();
 
     const { result } = renderHook(() => useForm(initialValues, onSubmit));
+    expect(result.current.submitting).toEqual(false);
 
-    await act(async () => {
-        await result.current.handleSubmit({
+    const submit = act(() =>
+        result.current.handleSubmit({
             preventDefault
-        });
-    });
+        })
+    );
+
+    expect(result.current.submitting).toEqual(true);
+
+    await submit;
 
     expect(preventDefault).toHaveBeenCalledTimes(1);
+    expect(result.current.submitting).toEqual(false);
     expect(onSubmit).toHaveBeenCalledWith(initialValues, {
         preventDefault
     });

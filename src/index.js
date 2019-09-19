@@ -1,5 +1,19 @@
 import { useState } from 'react';
 
+export const getValue = event => {
+    const { value, checked, files, multiple, type } = event.target;
+
+    if (type === 'file') {
+        return multiple ? files : files[0];
+    }
+
+    if (type === 'checkbox') {
+        return checked;
+    }
+
+    return value;
+};
+
 const useForm = (initialValues, onSubmit) => {
     const [values, setValues] = useState(initialValues);
     const [submitting, setSubmitting] = useState(false);
@@ -23,11 +37,12 @@ const useForm = (initialValues, onSubmit) => {
     };
 
     const handleChange = event => {
-        const { name, value, checked, type } = event.target;
+        const { name } = event.target;
+        const value = getValue(event);
 
         setValues(currentValues => ({
             ...currentValues,
-            [name]: type === 'checkbox' ? checked : value
+            [name]: value
         }));
     };
 
