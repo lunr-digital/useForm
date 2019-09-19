@@ -7,8 +7,7 @@ import useForm from '.';
 const Form = ({ onSubmit }) => {
     const form = useForm(
         {
-            name: '',
-            tsAndCs: false
+            name: ''
         },
         onSubmit
     );
@@ -28,38 +27,6 @@ const Form = ({ onSubmit }) => {
                 />
             </label>
 
-            <label>
-                Agree to terms
-                <input
-                    name="tsAndCs"
-                    type="checkbox"
-                    onChange={form.handleChange}
-                    checked={form.values.tsAndCs}
-                />
-            </label>
-
-            <p>Product:</p>
-            <label>
-                <input
-                    name="product"
-                    type="radio"
-                    onChange={form.handleChange}
-                    value="bee"
-                    checked={form.values.product === 'bee'}
-                />
-                Bee
-            </label>
-            <label>
-                <input
-                    name="product"
-                    type="radio"
-                    onChange={form.handleChange}
-                    value="octopus"
-                    checked={form.values.product === 'octopus'}
-                />
-                Octopus
-            </label>
-
             <button type="submit" disabled={form.submitting}>
                 Submit
             </button>
@@ -69,11 +36,7 @@ const Form = ({ onSubmit }) => {
 
 it('should handle the form lifecycle', async () => {
     const onSubmit = jest.fn(values => {
-        if (
-            values.name.length &&
-            values.tsAndCs === true &&
-            values.product === 'bee'
-        ) {
+        if (values.name.length) {
             return Promise.resolve();
         }
 
@@ -96,16 +59,14 @@ it('should handle the form lifecycle', async () => {
             value: 'Bob'
         }
     });
-    fireEvent.click(getByLabelText('Agree to terms'));
-    fireEvent.click(getByLabelText('Bee'));
 
-    const successful = act(async () => {
+    const successfulSubmit = act(async () => {
         fireEvent.click(getByText('Submit'));
     });
 
     expect(getByText('Submit')).toBeDisabled();
 
-    await successful;
+    await successfulSubmit;
 
     expect(getByText('Thanks.')).toBeInTheDocument();
 });
