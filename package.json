@@ -1,6 +1,6 @@
 {
   "name": "@lunrdigital/use-form",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "React hook for simple form management",
   "source": "src/index.js",
   "main": "dist/index.js",
