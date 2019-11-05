@@ -2,11 +2,13 @@
   "name": "@lunrdigital/use-form",
   "version": "1.1.1",
   "description": "React hook for simple form management",
-  "main": "dist",
+  "source": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "scripts": {
     "test": "jest",
     "prepublish": "npm run build",
-    "build": "rm -rf dist && NODE_ENV=production babel src/index.js -d dist"
+    "build": "rm -rf dist && NODE_ENV=production microbundle"
   },
   "repository": {
     "type": "git",
@@ -43,6 +45,7 @@
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "1.x",
     "jest": "^24.9.0",
+    "microbundle": "^0.11.0",
     "prettier": "1.x",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
