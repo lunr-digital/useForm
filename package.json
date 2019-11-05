@@ -4,7 +4,6 @@
   "description": "React hook for simple form management",
   "source": "src/index.js",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
   "scripts": {
     "test": "jest",
     "prepublish": "npm run build",
