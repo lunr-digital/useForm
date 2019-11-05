@@ -1,18 +1,6 @@
 import { useState } from 'react';
 
-export const getValue = event => {
-    const { value, checked, files, multiple, type } = event.target;
-
-    if (type === 'file') {
-        return multiple ? files : files[0];
-    }
-
-    if (type === 'checkbox') {
-        return checked;
-    }
-
-    return value;
-};
+import getValue from './getValue';
 
 const useForm = (initialValues, onSubmit) => {
     const [values, setValues] = useState(initialValues);
